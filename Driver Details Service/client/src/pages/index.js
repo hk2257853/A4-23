@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '../Components/Layout/Layout';
-import UserList from '../Components/Userlist'
+import UserList from '../Components/Userlist/UserList'
 
 export default function Home() {
 

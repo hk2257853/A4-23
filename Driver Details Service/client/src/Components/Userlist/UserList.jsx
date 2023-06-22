@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import TableRow from "./TableRow";
+import DeleteConfirmationModal from "./DeleteConfirmationModal";
+import SearchBar from "./SearchBar";
 
 function Table() {
     const [data, setData] = useState([]);
@@ -46,15 +49,7 @@ function Table() {
     
     return (
       <>
-      <div className="pt-2 my-4 flex justify-center">
-        <input
-          type="text"
-          placeholder="Search by name"
-          className="border border-gray-300 px-4 py-2 rounded-md"
-          value={searchQuery}
-          onChange={handleSearch}
-        />
-      </div>
+      <SearchBar value={searchQuery} onChange={handleSearch} />
       
       <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200">
@@ -69,49 +64,17 @@ function Table() {
         </thead>
         <tbody>
           {filteredData.map((row) => (
-            <tr key={row.id} className="divide-y">
-              <td className="py-2 text-center px-4">{row.id}</td>
-              <td className="py-2 text-center px-4">{row.name}</td>
-              <td className="py-2 text-center px-4">{row.email}</td>
-              <td className="py-2 text-center px-4">{row.contactNo}</td>
-              <td className="py-2 text-center px-4">
-              <div className="flex items-center justify-center px-4">
-                <button className="w-6 h-6 rounded-full bg-red-500 text-white flex items-center justify-center" onClick={() => handleButtonClick(row.id)}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="w-4 h-4"
-                  >
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                  </svg>
-                </button>
-              </div>
-            </td>
-            </tr>
+            <TableRow key={row.id} row={row} handleButtonClick={handleButtonClick} />
           ))}
         </tbody>
       </table>
 
       {isConfirmationOpen && (
-        <div className="fixed inset-0 flex items-center justify-center z-10">
-          <div className="bg-white p-6 rounded-md shadow-lg">
-            <p>Are you sure you want to delete {data.find((row) => row.id === selectedRowId)?.name}?</p>
-            <div className="mt-4 flex justify-end">
-              <button className="mr-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-md" onClick={closeModal}>
-                Cancel
-              </button>
-              <button className="px-4 py-2 bg-red-500 text-white rounded-md" onClick={handleConfirmDeletion}>
-                Yes
-              </button>
-            </div>
-          </div>
-        </div>
+        <DeleteConfirmationModal
+        selectedRowName={data.find((row) => row.id === selectedRowId)?.name}
+        closeModal={closeModal}
+        handleConfirmDeletion={handleConfirmDeletion}
+        />
       )}
       </div>
     </>
