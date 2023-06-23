@@ -6,7 +6,7 @@ const router = express.Router();
 
 export const getDriverDatas = async (req, res) => {
   try {    
-    const driverData = await DriverData.find({}); // all drivers should be able to see all skills
+    const driverData = await DriverData.find({});
     res.status(200).json(driverData);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -16,15 +16,14 @@ export const getDriverDatas = async (req, res) => {
 export const createDriverData = async (req, res) => {
     const post = req.body;
 
-    // TODO: handle duplications
-    // const {skill} = post;
-    // const existingSkill = await DriverData.findOne({ skill });  
-    // if (existingSkill)
-    // return res.status(400).json({ message: "Driver already exist" });
+    const {email} = post;
+    const existingDriver = await DriverData.findOne({ email });  
+    if (existingDriver)
+    return res.status(400).json({ message: "Email already exist" });
   
     const newDriverData = new DriverData({
       ...post,
-      // creator: req.userId,
+      // creator: req.userId, // TODO: once we have auth
     });
   
     try {
@@ -38,20 +37,21 @@ export const createDriverData = async (req, res) => {
 export const deleteDriverData = async (req, res) => {
   const { id } = req.params;
 
-  // TODO: fix no post with id (I think this logic is wrong)
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send(`No post with id: ${id}`);
+  if (!mongoose.Types.ObjectId.isValid(id)) // this check if the id is valid mongoose id or not
+    return res.status(404).send("Invalid id");
 
-  await DriverData.findByIdAndRemove(id);
+    const deletedDriverData = await DriverData.findByIdAndRemove(id);
 
-  res.json({ message: "Driver data deleted successfully." });
+    if (!deletedDriverData)
+    return res.status(404).send("No driver data with the given id");
+
+    res.json({ message: "Driver data deleted successfully." });
 };
   
 export const updateDriverData = async (req, res) => {
   const { id } = req.params;
   const { name, email, contact } = req.body;
 
-  // TODO: fix no post with id (I think this logic is wrong)
   if (!mongoose.Types.ObjectId.isValid(id))
     return res.status(404).send(`No post with id: ${id}`);
 
