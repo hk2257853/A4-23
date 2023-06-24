@@ -20,6 +20,7 @@ module.exports = {
       },
       exposes: {
         "./luigi": "./components/luigi",
+        "./userList": "./components/Userlist/UserList",
       },
     };
     config.cache = false;
