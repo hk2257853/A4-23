@@ -22,6 +22,8 @@ function Table() {
     ];
 
     setData(hardcodedData);
+
+    console.log(JSON.parse(localStorage.getItem("profile")));
   }, []);
 
   // For Delete Modal
