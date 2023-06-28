@@ -3,16 +3,20 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import userRoutes from "./routes/users.js"
+import proxy from "express-http-proxy";
 
-const app = express();
+const app = express(); 
 
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-const PORT = 1300;
+const PORT = 1000;
 
 app.use("/user", userRoutes);
+app.use("/driver", proxy("http://localhost:1300/")) 
+
+// at http://localhost:1000/driver/driver can view that server's results!! TODO: better naming to remove confusion
 
 const CONNECTION_URL = "mongodb://0.0.0.0:27017/HackathonUsers"; 
 
@@ -27,6 +31,6 @@ mongoose
   });
 
 app.listen(PORT, () => {
-    console.log("Server started on 1300");
+    console.log("Gateway Server started on 1000");
   });
   
