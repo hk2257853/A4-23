@@ -3,6 +3,7 @@ import TableRow from "./TableRow";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import SearchBar from "./SearchBar";
 import AddModal from "./AddModal";
+import * as api from '../../api'
 
 function Table() {
   const [data, setData] = useState([]);
@@ -12,16 +13,13 @@ function Table() {
   const [searchQuery, setSearchQuery] = useState("")
 
   useEffect(() => {
-    const hardcodedData = [
-      { id: 1, name: 'John Doe', email: 'johndoe@example.com', contactNo: '1234567890' },
-      { id: 2, name: 'Jane Smith', email: 'janesmith@example.com', contactNo: '9876543210' },
-      { id: 3, name: 'John Doe1', email: 'johndoe@example.com', contactNo: '1234567890' },
-      { id: 4, name: 'Jane Smith2', email: 'janesmith@example.com', contactNo: '9876543210' },
-      { id: 12, name: 'John Doe3', email: 'johndoe@example.com', contactNo: '1234567890' },
-      { id: 23, name: 'Jane Smith4', email: 'janesmith@example.com', contactNo: '9876543210' },
-    ];
-
-    setData(hardcodedData);
+    api.getDriverDatas()
+        .then((res) => {
+            setData(res.data);
+      })
+      .catch(error => {
+        console.log(error)          
+      });
 
     console.log(JSON.parse(localStorage.getItem("profile")));
   }, []);
@@ -34,7 +32,14 @@ function Table() {
 
   const handleConfirmDeletion = () => {
     const updatedData = data.filter((row) => row.id !== selectedRowId);
-    setData(updatedData);
+    
+    api.deleteDriverData(selectedRowId)
+    .then((res) => {
+      setData(updatedData);
+    })
+    .catch(error => {
+      console.log(error)
+    }); 
 
     setIsConfirmationOpen(false);
   };

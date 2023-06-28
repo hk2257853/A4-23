@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import * as api from "../../api"
 
 function AddModal(props) {
     let { setisModalOpen, heading, setData, data, selectedDriver, setSelectedRowId } = props;
@@ -18,9 +19,17 @@ function AddModal(props) {
     }
 
     const addDriver = () => {
-        setData([...data, driverDetails])
-
+        
         // Add the data to backend
+        api.createDriverData(driverDetails)
+        .then((res) => {
+            alert("Driver details added successfully!")
+            setData([...data, driverDetails])
+            })
+            .catch(error => {
+            if(error.response.data.message) alert(error.response.data.message);
+            else alert("Something went wrong, Please try again later");
+        });
 
 
         setisModalOpen(false)
@@ -37,6 +46,10 @@ function AddModal(props) {
         setData(updatedData);
 
         // Add the updated data to backend
+        api.updateDriverData(driverDetails.id, updatedData)
+        .catch(error => {
+          console.log(error)
+        });
 
         setisModalOpen(false)
 
