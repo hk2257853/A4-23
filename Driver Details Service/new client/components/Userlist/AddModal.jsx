@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import * as api from "../../api"
+import { toast } from 'react-toastify';
+
+// TODO: exposing mongodb id can cause security issues. Replace with uuid later. 
 
 function AddModal(props) {
     let { setisModalOpen, heading, setData, data, selectedDriver, setSelectedRowId } = props;
-    const [driverDetails, setDriverDetails,] = useState({ id: Math.round(Math.random() * 100), name: "", email: "", contactNo: "" })
+    const [driverDetails, setDriverDetails,] = useState({ name: "", email: "", contact: "" })
     const [title, setTitle] = useState(heading)
 
     useEffect(() => {
@@ -23,12 +26,13 @@ function AddModal(props) {
         // Add the data to backend
         api.createDriverData(driverDetails)
         .then((res) => {
-            alert("Driver details added successfully!")
+            toast.success("Driver details added successfully!");
             setData([...data, driverDetails])
             })
             .catch(error => {
-            if(error.response.data.message) alert(error.response.data.message);
-            else alert("Something went wrong, Please try again later");
+                console.log(error)
+                if(error.response.data.message) toast.error(error.response.data.message);
+                else toast.error("Something went wrong, Please try again later");
         });
 
 
@@ -36,19 +40,24 @@ function AddModal(props) {
     }
 
     const editDriver = () => {
-        const updatedData = data.map((driver) => {
-            if (driver.id === driverDetails.id) {
+        const newUpdatedData = data.map((driver) => {
+            if (driver._id === driverDetails._id) {
                 return driverDetails;
             } else {
                 return driver;
             }
         });
-        setData(updatedData);
 
         // Add the updated data to backend
-        api.updateDriverData(driverDetails.id, updatedData)
+        api.updateDriverData(driverDetails._id, driverDetails)
+        .then((res) => {
+            toast.success("Driver details updated successfully!");            
+            setData(newUpdatedData);
+        })
         .catch(error => {
-          console.log(error)
+            console.log(error)
+            if(error.response.data.message) toast.error(error.response.data.message);
+            else toast.error("Something went wrong, Please try again later");
         });
 
         setisModalOpen(false)
@@ -108,7 +117,7 @@ function AddModal(props) {
                                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="contact-no">
                                                     Contact Number
                                                 </label>
-                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="contact-no" type="tel" placeholder="1234567890" onChange={handleChange} name='contactNo' value={driverDetails.contactNo} />
+                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="contact-no" type="tel" placeholder="1234567890" onChange={handleChange} name='contact' value={driverDetails.contact} />
                                             </div>
                                         </div>
                                     </form>

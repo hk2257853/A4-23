@@ -31,7 +31,7 @@ function Table() {
   };
 
   const handleConfirmDeletion = () => {
-    const updatedData = data.filter((row) => row.id !== selectedRowId);
+    const updatedData = data.filter((row) => row._id !== selectedRowId);
     
     api.deleteDriverData(selectedRowId)
     .then((res) => {
@@ -83,14 +83,14 @@ function Table() {
           </thead>
           <tbody>
             {filteredData.map((row) => (
-              <TableRow key={row.id} row={row} handleButtonClick={handleButtonClick} handleEdit={handleEdit} />
+              <TableRow key={row._id} row={row} handleButtonClick={handleButtonClick} handleEdit={handleEdit} />
             ))}
           </tbody>
         </table>
 
         {isConfirmationOpen && (
           <DeleteConfirmationModal
-            selectedRowName={data.find((row) => row.id === selectedRowId)?.name}
+            selectedRowName={data.find((row) => row._id === selectedRowId)?.name}
             closeModal={closeModal}
             handleConfirmDeletion={handleConfirmDeletion}
           />
@@ -98,7 +98,7 @@ function Table() {
       </div>
       {
         isModalOpen && (
-          <AddModal setisModalOpen={setisModalOpen} heading="Add" setData={setData} data={data} selectedDriver={data.find((row) => row.id === selectedRowId)} setSelectedRowId={setSelectedRowId}/>
+          <AddModal setisModalOpen={setisModalOpen} heading="Add" setData={setData} data={data} selectedDriver={data.find((row) => row._id === selectedRowId)} setSelectedRowId={setSelectedRowId}/>
         )
       }
     </>
