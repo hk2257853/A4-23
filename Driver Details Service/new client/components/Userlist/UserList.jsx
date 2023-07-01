@@ -22,6 +22,7 @@ function Table() {
       });
 
     console.log(JSON.parse(localStorage.getItem("profile")));
+    // console.log(localStorage.getItem('user')); // auth simulation
   }, []);
 
   // For Delete Modal

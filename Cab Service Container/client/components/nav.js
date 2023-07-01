@@ -33,11 +33,11 @@ const Nav = () => (
                 </button>
                 <div className="hidden lg:flex items-center">                    
                     <div className="-mb-1">
-                        <Link href="/mario" className="github-button" data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themesberg/windster-tailwind-css-dashboard on GitHub">Load Mario</Link>
+                        <Link href="/cabpg" className="github-button" data-color-scheme="no-preference: dark; light: light; dark: light;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star themesberg/windster-tailwind-css-dashboard on GitHub">Load Cabpg</Link>
                     </div>
                 </div>
-                <a href="/userList" className="hidden sm:inline-flex ml-5 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center mr-3">
-                    Load Luigi
+                <a href="/driverpg" className="hidden sm:inline-flex ml-5 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center mr-3">
+                    Load Driverpg
                 </a>
                 </div>
             </div>
