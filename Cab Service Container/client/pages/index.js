@@ -14,10 +14,9 @@ export default function Home() {
       </Head>
 
       <main>
-      <div className="container mx-auto p-4">
-      <h1 className="mt-10 text-3xl font-bold mb-4">Welcome to the Container App</h1> {/* TODO: inplace of mt-10 here put in global css */}
-
-    </div>
+        <div className="pt-20 container mx-auto p-4">
+        <h1 className="text-3xl font-bold mb-4">Landing pg here</h1>
+        </div>
       </main>
     </div>
   )

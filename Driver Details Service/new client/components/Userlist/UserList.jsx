@@ -3,6 +3,7 @@ import TableRow from "./TableRow";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import SearchBar from "./SearchBar";
 import AddModal from "./AddModal";
+import { useRouter } from "next/router"
 import * as api from '../../api'
 
 function Table() {
@@ -11,6 +12,7 @@ function Table() {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [isModalOpen, setisModalOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
+  const router = useRouter()
 
   useEffect(() => {
     api.getDriverDatas()
@@ -21,7 +23,11 @@ function Table() {
         console.log(error)          
       });
 
-    console.log(JSON.parse(localStorage.getItem("profile")));
+    const user = JSON.parse(localStorage.getItem("profile"));
+    if(!user)
+    {
+      router.push("/auth/login"); // should I put this in navbar?
+    }
     // console.log(localStorage.getItem('user')); // auth simulation
   }, []);
 
@@ -66,7 +72,7 @@ function Table() {
 
   return (
     <>
-      <button className="mx-auto flex mt-8 items-center justify-center gap-x-2 p-3" onClick={() => setisModalOpen(true)}>
+      <button className="pt-20 mx-auto flex items-center justify-center gap-x-2 p-3" onClick={() => setisModalOpen(true)}>
         Add <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" stroke="black" viewBox="0 0 16 16" className="border  border-black rounded-full bi bi-plus"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" /></svg>
       </button>
       <SearchBar value={searchQuery} onChange={handleSearch} />

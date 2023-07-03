@@ -6,7 +6,7 @@ const router = express.Router();
 
 export const getDriverDatas = async (req, res) => {
   try {    
-    const driverData = await DriverData.find({});
+    const driverData = await DriverData.find({"creator":req.userId});
     res.status(200).json(driverData);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -23,7 +23,7 @@ export const createDriverData = async (req, res) => {
   
     const newDriverData = new DriverData({
       ...post,
-      // creator: req.userId, // TODO: once we have auth
+      creator: req.userId,
     });
   
     try {

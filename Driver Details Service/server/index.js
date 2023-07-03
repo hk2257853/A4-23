@@ -14,7 +14,7 @@ const PORT = 1300;
 
 app.use("/driver", driverRoutes);
 
-const CONNECTION_URL = "mongodb://0.0.0.0:27017/A42023";
+const CONNECTION_URL = "mongodb://0.0.0.0:27017/A42023Driver";
 
 mongoose
   .connect(CONNECTION_URL)

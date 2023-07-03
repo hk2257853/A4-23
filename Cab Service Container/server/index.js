@@ -15,10 +15,10 @@ const PORT = 1000;
 
 app.use("/user", userRoutes);
 app.use("/driver", proxy("http://localhost:1300/")) 
-
 // at http://localhost:1000/driver/driver can view that server's results!! TODO: better naming to remove confusion
+// extra note (learning purpose):  the headers intact, including the Authorization header with the token. The backend server at http://localhost:1300/ can then access the token in the same way as your initial server.
 
-const CONNECTION_URL = "mongodb://0.0.0.0:27017/HackathonUsers"; 
+const CONNECTION_URL = "mongodb://0.0.0.0:27017/A42023Users"; 
 
 mongoose
   .connect(CONNECTION_URL)
