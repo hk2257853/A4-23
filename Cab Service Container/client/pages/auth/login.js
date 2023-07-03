@@ -8,7 +8,7 @@ import * as api from "../../api/index"
 import { toast } from 'react-toastify';
 
 function SignIn() {
-    const [formData, setFormData] = useState({ email: "", password: "", type: "" })
+    const [formData, setFormData] = useState({ email: "", password: "", utype: "" })
     const router = useRouter()
 
     const handleChange = (e) => {
@@ -29,7 +29,7 @@ function SignIn() {
 
             localStorage.setItem("profile", JSON.stringify({ response }));
             toast.success("Logged in successfully!");            
-            router.push("/");
+            router.push("/driverpg");
           })
           .catch(error => {
             console.log(error)
@@ -60,10 +60,10 @@ function SignIn() {
                             <input className="block w-72 md:w-96 border-b border-black focus:border-blue-700 focus:rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:shadow focus:border" id="password" type="password" onChange={handleChange} name='password' />
                         </div>
                         <div className="w-full px-3">
-                            <label className="block uppercase tracking-wide font-serif text-xs font-bold mb-2" htmlFor="type">
+                            <label className="block uppercase tracking-wide font-serif text-xs font-bold mb-2" htmlFor="utype">
                                 Select Account Type
                             </label>
-                            <select onChange={handleChange} className="appearance-none bg-white border-b border-black focus:border-blue-700  rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:shadow-outline" name="type" defaultValue="">
+                            <select onChange={handleChange} className="appearance-none bg-white border-b border-black focus:border-blue-700  rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:shadow-outline" name="utype" defaultValue="">
                                 <option value="">Select an option</option>
                                 <option value="driver">Driver</option>
                                 <option value="passenger">Passenger</option>
