@@ -6,6 +6,8 @@ import AddModal from "./AddModal";
 import { useRouter } from "next/router"
 import * as api from '../../api'
 
+// TODO: put features like dashboard, pagination and sort table option
+
 function Table() {
   const [data, setData] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState(null);
@@ -71,10 +73,15 @@ function Table() {
 
   return (
     <>
-      <button className="pt-20 mx-auto flex items-center justify-center gap-x-2 p-3" onClick={() => setisModalOpen(true)}>
-        Add <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" stroke="black" viewBox="0 0 16 16" className="border  border-black rounded-full bi bi-plus"> <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" /></svg>
-      </button>
-      <SearchBar value={searchQuery} onChange={handleSearch} />
+      <div className="pt-20 px-5 flex items-center justify-between">
+        <SearchBar value={searchQuery} onChange={handleSearch} />
+        <button className="flex items-center justify-center gap-x-2 p-3" onClick={() => setisModalOpen(true)}>
+          Add
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" stroke="black" viewBox="0 0 16 16" className="border border-black rounded-full bi bi-plus">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+          </svg>
+        </button>
+      </div>
 
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">

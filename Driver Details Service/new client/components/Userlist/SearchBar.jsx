@@ -1,6 +1,5 @@
 function SearchInput({ value, onChange }) {
     return (
-      <div className="pt-2 my-4 flex justify-center">
         <input
           type="text"
           placeholder="Search by name"
@@ -8,7 +7,6 @@ function SearchInput({ value, onChange }) {
           value={value}
           onChange={onChange}
         />
-      </div>
     );
 }
 

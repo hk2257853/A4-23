@@ -5,6 +5,7 @@ import React, { useState } from "react"
 // import { loginBackground } from "../../assets"
 import { useRouter } from "next/router"
 import * as api from "../../api/index"
+import { toast } from 'react-toastify';
 
 function SignUp() {
     const [formData, setFormData] = useState({ name: "", email: "", password: "", cpassword: "", utype: "" })
@@ -26,12 +27,12 @@ function SignUp() {
             const response = res.data;
 
             localStorage.setItem("profile", JSON.stringify({ response }));
-            alert("Account created successfully!")
+            toast.success("Account created successfully!");
             router.push("/driverpg");
           })
           .catch(error => {
             console.log(error)
-            alert(error.response.data.message);
+            toast.error(error.response.data.message);
           });
       };   
 
