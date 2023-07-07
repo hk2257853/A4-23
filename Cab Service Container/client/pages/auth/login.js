@@ -2,7 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import React, { useState } from "react"
-// import { loginBackground } from "../../assets"
+import { loginBackground } from "../../assets"
 import { useRouter } from "next/router"
 import * as api from "../../api/index"
 import { toast } from 'react-toastify';
@@ -76,9 +76,9 @@ function SignIn() {
                         <Link href="/auth/register" className="font-bold underline-offset-4 underline uppercase">Sign up for free</Link>
                     </div>
                 </div>
-                {/* <div className="hidden md:w-1/2 md:block">
+                <div className="hidden md:w-1/2 md:block">
                     <Image src={loginBackground} className="w-full max-h-screen" alt="Background" priority />
-                </div> */}
+                </div>
             </div>
         </>
     )

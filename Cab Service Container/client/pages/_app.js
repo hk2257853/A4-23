@@ -1,5 +1,5 @@
-import Nav from '../components/nav'
 import '../styles/globals.css'
+import Nav from '../components/Nav'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 

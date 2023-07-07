@@ -2,7 +2,7 @@ import Head from "next/head"
 import Image from "next/image"
 import Link from "next/link"
 import React, { useState } from "react"
-// import { loginBackground } from "../../assets"
+import { loginBackground } from "../../assets"
 import { useRouter } from "next/router"
 import * as api from "../../api/index"
 import { toast } from 'react-toastify';
@@ -85,7 +85,7 @@ function SignUp() {
                     <p className="text-sm mt-4 font-serif tracking-widest">Already have an account? <Link href="/auth/login" className="font-bold font-serif underline-offset-4 underline uppercase">Sign in</Link></p>
                 </div>
                 <div className="hidden md:w-1/2 md:block">
-                    {/* <Image src={loginBackground} className="w-full max-h-screen" alt="Background" priority /> */}
+                    <Image src={loginBackground} className="w-full max-h-screen" alt="Background" priority />
                 </div>
             </div>
         </>

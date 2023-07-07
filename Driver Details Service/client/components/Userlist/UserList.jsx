@@ -28,7 +28,7 @@ function Table() {
     const user = JSON.parse(localStorage.getItem("profile"));
     if(!user)
     {
-      router.push("/auth/login"); // TODO: should I put this in navbar?
+      // router.push("/auth/login"); // TODO: should I put this in navbar?
     }
   }, []);
 

@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic'
 
 const RemoteLuigi = dynamic(
   // () => import("app1/luigi"),
-  () => import("app1/userList"),
+  () => import("driver/userList"),
   { ssr: false }
 )
 

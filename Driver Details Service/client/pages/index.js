@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Luigi from '../components/luigi'
 import styles from '../styles/Home.module.css'
 import UserList from '../components/Userlist/UserList'
 
@@ -12,7 +11,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <Luigi /> */}
       <UserList/>
     </div>
   )
