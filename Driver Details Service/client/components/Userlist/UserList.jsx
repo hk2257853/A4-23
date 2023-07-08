@@ -154,13 +154,16 @@ function Table() {
                       ID
                     </th>
                     <th className="py-2 text-center px-4" onClick={() => handleSort("name")}>
-                      Name {sortKey === "name" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : ""))}
+                      Name {sortKey === "name" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
+                      {sortKey !== "name" && "↑↓"}
                     </th>
                     <th className="py-2 text-center px-4" onClick={() => handleSort("email")}>
-                      Email {sortKey === "email" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : ""))}
+                      Email {sortKey === "email" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
+                      {sortKey !== "email" && "↑↓"}
                     </th>
                     <th className="py-2 text-center px-4" onClick={() => handleSort("contact")}>
-                      Contact No {sortKey === "contact" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : ""))}
+                      Contact No {sortKey === "contact" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
+                      {sortKey !== "contact" && "↑↓"}
                     </th>
                     <th className="py-2 text-center px-4">Action</th>
                   </tr>
