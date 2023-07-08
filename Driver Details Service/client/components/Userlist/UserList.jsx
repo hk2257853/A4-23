@@ -20,6 +20,9 @@ function Table() {
   const [searchQuery, setSearchQuery] = useState("")
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [sortOrder, setSortOrder] = useState("none");
+  const [sortKey, setSortKey] = useState(null);
+  const [count, setCount] = useState(0)
   const router = useRouter()
 
   useEffect(() => {
@@ -38,10 +41,8 @@ function Table() {
     else {
       setIsLoggedIn(true)
     }
-  }, []);
+  }, [isLoggedIn, count]);
 
-  useEffect(() => {
-  }, [isLoggedIn])
 
   // For Delete Modal
   const handleButtonClick = (id) => {
@@ -72,22 +73,54 @@ function Table() {
     setSearchQuery(event.target.value);
   };
 
-  // const filteredData = data.filter((row) =>
-  //   row.name.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
-
-  // For selecting row for edit operation
   const handleEdit = (id) => {
     setSelectedRowId(id)
     setisModalOpen(true)
   }
+
+  const handleSort = (key) => {
+    let newSortOrder;
+    if (count == 0) {
+      setCount(1)
+      newSortOrder = "asc";
+    }
+    else if (count == 1) {
+      setCount(2)
+      newSortOrder = "desc";
+    }
+    else {
+      setCount(0)
+      newSortOrder = "none";
+    }
+    // if (sortKey === key) {
+    //   // If the same key is clicked again, toggle the sort order
+    //   newSortOrder = sortOrder === "asc" ? (sortOrder == "desc" ? "none" : "desc") : "asc";
+    // } else {
+    //   // If a new key is clicked, sort in ascending order
+    //   newSortOrder = "asc";
+    // }
+    setSortOrder(newSortOrder);
+    setSortKey(key);
+  };
 
   const indexOfLastRow = currentPage * rowsPerPage;
   const indexOfFirstRow = indexOfLastRow - rowsPerPage;
   const filteredData = data.filter((row) =>
     row.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  const currentRows = filteredData.slice(indexOfFirstRow, indexOfLastRow);
+
+  let sortedData = filteredData;
+  if (sortOrder !== "none" && sortKey !== null) {
+    sortedData = filteredData.sort((a, b) => {
+      if (sortOrder === "asc") {
+        return a[sortKey].localeCompare(b[sortKey]);
+      } else if (sortOrder === "desc") {
+        return b[sortKey].localeCompare(a[sortKey]);
+      }
+    });
+  }
+
+  const currentRows = sortedData.slice(indexOfFirstRow, indexOfLastRow);
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -117,10 +150,18 @@ function Table() {
               <table className="min-w-full divide-y divide-gray-200">
                 <thead>
                   <tr>
-                    <th className="py-2 text-center px-4">ID</th>
-                    <th className="py-2 text-center px-4">Name</th>
-                    <th className="py-2 text-center px-4">Email</th>
-                    <th className="py-2 text-center px-4">Contact No</th>
+                    <th className="py-2 text-center px-4">
+                      ID
+                    </th>
+                    <th className="py-2 text-center px-4" onClick={() => handleSort("name")}>
+                      Name {sortKey === "name" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : ""))}
+                    </th>
+                    <th className="py-2 text-center px-4" onClick={() => handleSort("email")}>
+                      Email {sortKey === "email" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : ""))}
+                    </th>
+                    <th className="py-2 text-center px-4" onClick={() => handleSort("contact")}>
+                      Contact No {sortKey === "contact" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : ""))}
+                    </th>
                     <th className="py-2 text-center px-4">Action</th>
                   </tr>
                 </thead>
