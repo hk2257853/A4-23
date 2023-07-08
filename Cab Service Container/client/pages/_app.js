@@ -1,12 +1,12 @@
 import '../styles/globals.css'
-import Nav from '../components/Nav'
+import Layout from '../components/Layout/Layout'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 
 function MyApp({ Component, pageProps }) {
   return ( 
     <>
-      <Nav />
+      <Layout />
       <ToastContainer/>
       <Component {...pageProps} />
     </>
