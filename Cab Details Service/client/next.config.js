@@ -1,36 +1,31 @@
-const {
-  withModuleFederation,
-} = require("@module-federation/nextjs-mf");
-module.exports = {
-  future: { webpack5: true },
+const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
   images: {
-    domains: ['upload.wikimedia.org'],
+    unoptimized: true,
   },
   webpack: (config, options) => {
     const { isServer } = options;
-    const mfConf = {
-      mergeRuntime: true, //experimental
-      name: "app2",
-      library: {
-        type: config.output.libraryTarget,
-        name: "app2",
-      },
-      filename: "static/runtime/app2remoteEntry.js",
-      remotes: {
-      },
-      exposes: {
-        "./mario": "./components/mario",
-      },
-    };
-    config.cache = false;
-    withModuleFederation(config, options, mfConf);
-
+    //config.experiments = { topLevelAwait: true, layers: false };
+    config.plugins.push(
+      new NextFederationPlugin({
+        name: 'cab',
+        remotes: {
+          container: `container@http://localhost:3000/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`,
+        },
+        filename: 'static/chunks/remoteEntry.js',
+        exposes:{
+          // './catalog': "./components/Catalog.js"
+          "./userList": "./components/Userlist/UserList",
+        },
+        extraOptions: {
+          exposePages: true
+        }
+      })
+    );
     return config;
-  },
+  }
+}
 
-  webpackDevMiddleware: (config) => {
-    // Perform customizations to webpack dev middleware config
-    // Important: return the modified config
-    return config;
-  },
-};
+module.exports = nextConfig

@@ -2,20 +2,28 @@ import jwt from "jsonwebtoken";
 
 const auth = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(" ")[1];    
-
-    let decodedData;
+    const token = req.headers.authorization?.split(" ")[1];
 
     if (token) {
-      // get the user data from the token
-      decodedData = jwt.verify(token, "test"); // test is the secret we had put in creating token code
+      jwt.verify(token, "test", (error, decodedData) => {
+        if (error) {
+          if (error instanceof jwt.TokenExpiredError) {
+            // Handle expired token error
+            return res.status(401).json({ message: "Token expired" });
+          }
+          // Handle other token verification errors
+          return res.status(401).json({ message: "Invalid token" });
+        }
 
-      req.userId = decodedData?.id; // store user id
+        req.userId = decodedData?.id; // store user id
+        next(); // Proceed to the next middleware or route
+      });
+    } else {
+      res.status(401).json({ message: "No token found" });
     }
-
-    next(); // do something after check is done (eg: like)
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
