@@ -4,6 +4,7 @@ import download from './home/download.png'
 import search from './home/magnifying-glass.png'
 import driver_on_way from './home/driver-on-way.jpg'
 import review from './home/review.jpg'
+import notFoundImage from './notFoundImage.svg'
 
 export {
     loginBackground,
@@ -11,5 +12,6 @@ export {
     download,
     search,
     driver_on_way,
-    review
+    review,
+    notFoundImage
 }
