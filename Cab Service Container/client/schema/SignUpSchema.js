@@ -12,7 +12,6 @@ const SignUpSchema = Yup.object().shape({
     cpassword: Yup.string()
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
         .required('Confirm password is required'),
-    utype: Yup.string().required("Account type required")
 });
 
 export default SignUpSchema;

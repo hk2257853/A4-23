@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Microfrontend Demo App 2</title>
+        <title>Cab Details Service</title>
         <meta name="description" content="This is an app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

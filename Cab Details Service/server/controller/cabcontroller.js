@@ -25,7 +25,7 @@ export const createCabData = async (req, res) => {
 
   const newCabData = new CabData({
     ...post,
-    // creator: req.userId,
+    creator: req.userId,
   });
 
   try {

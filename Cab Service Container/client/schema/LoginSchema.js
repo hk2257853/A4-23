@@ -7,7 +7,6 @@ const LoginSchema = Yup.object().shape({
     password: Yup.string()
         .min(8, 'Password must be at least 8 characters')
         .required('Password is required'),
-    utype: Yup.string().required("Account type required")
 });
 
 export default LoginSchema;

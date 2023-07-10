@@ -75,18 +75,7 @@ function SignUp() {
                                     </label>
                                     <Field className="block w-72 md:w-96 border-b border-black focus:border-blue-700 focus:rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:shadow focus:border" id="cpassword" type="password" name='cpassword' autoComplete="new-password"/>
                                     <ErrorMessage name="cpassword" component="div" className="text-red-500 text-xs mt-1" />
-                                </div>
-                                <div className="w-full px-3 mb-6">
-                                    <label className="block uppercase tracking-wide font-serif text-xs font-bold mb-2" htmlFor="utype">
-                                        Select Account Type
-                                    </label>
-                                    <Field as="select" className={`block w-full appearance-none bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline ${errors.utype && touched.utype ? 'border-red-500' : ''}`} id="utype" name="utype">
-                                        <option value="">Select an option</option>
-                                        <option value="driver">Driver</option>
-                                        <option value="passenger">Passenger</option>
-                                    </Field>
-                                    <ErrorMessage name="utype" component="div" className="text-red-500 text-xs mt-1" />
-                                </div>
+                                </div>                                
                                 <button className="w-full hover:bg-black hover:text-white px-3 py-2 rounded uppercase border border-black tracking-widest font-serif" type="submit">Register</button>
                             </Form>
                         )}
