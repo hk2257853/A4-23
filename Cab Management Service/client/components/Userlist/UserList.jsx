@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import TableRow from "./TableRow";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import SearchBar from "./SearchBar";
-import AddModal from "./AddModal";
 import { useRouter } from "next/router"
 import * as api from '../../api'
 import UnauthorizedAccessPage from "./UnauthorizedAccess";
@@ -14,8 +13,6 @@ import Model from "../StepByStepModel/Model";
 
 function Table() {
   const [data, setData] = useState([]);
-  const [cb, setCbData] = useState([]);
-  const [driver, setDriverData] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
@@ -29,7 +26,7 @@ function Table() {
   const router = useRouter()
 
   useEffect(() => {
-    api.getCabDatas()
+    api.getManagerDatas()
       .then((res) => {
         setData(res.data);
       })
@@ -44,31 +41,8 @@ function Table() {
     else {
       setIsLoggedIn(true)
     }
-      
-  // get driver data
-  api.getDriverDatas()
-      .then((res) => {
-        setDriverData(res.data);
-      })
-      .catch(error => {
-        console.log(error)
-      });
-
-  // get cab data
-  api.getCbDatas()
-      .then((res) => {
-        setCbData(res.data);
-      })
-      .catch(error => {
-        console.log(error)
-      });
-
+        
   }, [isLoggedIn, count]); // TODO: any improvements can be done here?
-
-  useEffect(() => {
-    console.log(driver)
-    console.log(cb)
-  }, [driver], [cb])
 
   // For Delete Modal
   const handleButtonClick = (id) => {
@@ -79,7 +53,7 @@ function Table() {
   const handleConfirmDeletion = () => {
     const updatedData = data.filter((row) => row._id !== selectedRowId);
 
-    api.deleteCabData(selectedRowId)
+    api.deleteManagerData(selectedRowId)
       .then((res) => {
         setData(updatedData);
       })
@@ -154,13 +128,13 @@ function Table() {
   };
 
   return (
-    isLoggedIn ?
+    !isLoggedIn ?
       (
         <UnauthorizedAccessPage />
       ) : (
         <>
           <Head>
-            <title>Cab Details</title>
+            <title>Cab Management</title>
           </Head>
           <section className="min-h-screen">
             <div className="pt-20 px-5 flex items-center justify-between">
@@ -217,7 +191,7 @@ function Table() {
             </div>
             {
               isModalOpen && (
-                <Model setisModalOpen={setisModalOpen} heading="Add" setData={setData} data={data} selectedCab={data.find((row) => row._id === selectedRowId)} setSelectedRowId={setSelectedRowId} />
+                <Model setisModalOpen={setisModalOpen} heading="Add" setData={setData} data={data} selectedRow={data.find((row) => row._id === selectedRowId)} setSelectedRowId={setSelectedRowId} />
               )
             }
           </section>

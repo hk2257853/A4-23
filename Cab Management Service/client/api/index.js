@@ -11,10 +11,10 @@ API.interceptors.request.use((req) => {
     return req;
 });
 
-export const getCabDatas = () => API.get("/cab");
-export const createCabData = (newCabData) => API.post("/cab", newCabData);
-export const deleteCabData = (id) => API.delete(`/cab/${id}`);
-export const updateCabData = (id, updatedData) => API.patch(`/cab/${id}`, updatedData);
+export const getManagerDatas = () => API.get("/manager");
+export const createManagerData = (newManagerData) => API.post("/manager", newManagerData);
+export const deleteManagerData = (id) => API.delete(`/manager/${id}`);
+export const updateManagerData = (id, updatedData) => API.patch(`/manager/${id}`, updatedData);
 
 export const getDriverDatas = () => axios.create({ baseURL: "http://localhost:1300" }).get("/driver");
-export const getCbDatas = () => axios.create({ baseURL: "http://localhost:1002" }).get("/cab");
+export const getCbDatas = () => axios.create({ baseURL: "http://localhost:1002" }).get("/manager");

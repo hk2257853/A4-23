@@ -15,7 +15,7 @@ const Pagination = ({ rowsPerPage, totalRows, paginate, currentPage }) => {
                     <li key={number} className="mb-2">
                         <Link
                             onClick={() => paginate(number)}
-                            href="/cabpg"
+                            href="/managepg"
                             className={`border border-cyan-600 rounded py-2 px-4 ${currentPage === number ? "bg-cyan-600 text-white" : "text-gray-700"}`}
                         >
                             {number}

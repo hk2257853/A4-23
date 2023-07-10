@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import * as api from '../../api'
 
 function StepOne({ onNext, setisModalOpen }) {
-    const [selectedDriver, selectedSelectedDriver] = useState({ "name": "", "email": "", "phone": "" });
+    const [selectedDriver, SetSelectedDriver] = useState([]);
     const [driverData, setDriversData] = useState([]);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ function StepOne({ onNext, setisModalOpen }) {
 
     const handleChange = (e) => {
         const selectedDriver = drivers.find((selectedDriver) => selectedDriver.name === e.target.value);
-        selectedSelectedDriver({
+        SetSelectedDriver({
             ...selectedDriver,
             name: e.target.value,
             email: selectedDriver.email,
@@ -37,7 +37,7 @@ function StepOne({ onNext, setisModalOpen }) {
     useEffect(() => {
         const selectedDriver = localStorage.getItem('selectedDriver');
         if (selectedDriver) {
-            selectedSelectedDriver(JSON.parse(selectedDriver));
+            SetSelectedDriver(JSON.parse(selectedDriver));
         }
     }, []);
 

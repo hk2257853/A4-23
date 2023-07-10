@@ -10,7 +10,7 @@ const nextConfig = {
     //config.experiments = { topLevelAwait: true, layers: false };
     config.plugins.push(
       new NextFederationPlugin({
-        name: 'cab',
+        name: 'manage',
         remotes: {
           container: `container@http://localhost:3000/_next/static/${isServer ? 'ssr' : 'chunks'}/remoteEntry.js`,
         },

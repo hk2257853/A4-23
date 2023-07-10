@@ -5,6 +5,7 @@ const managerSchema = mongoose.Schema({
     drivername: String,
     model: String,
     colour: String,
+    email: String,
     creator: String,
 })
 

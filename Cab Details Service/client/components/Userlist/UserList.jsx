@@ -128,7 +128,7 @@ function Table() {
   };
 
   return (
-    isLoggedIn ?
+    !isLoggedIn ?
       (
         <UnauthorizedAccessPage />
       ) : (

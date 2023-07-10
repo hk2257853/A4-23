@@ -1,9 +1,11 @@
 import React, { useState,useEffect } from 'react';
 import * as api from '../../api'
+import { toast } from 'react-toastify';
 
 function StepTwo({ data, onPrev, onComplete, setisModalOpen }) {
     const [cabs, setCabs] = useState([])
     const [selectedCab, setSelectedCab] = useState({ "regno": "", "model": "", "colour": "" })
+    const [selectedDriver, SetSelectedDriver] = useState([]);
 
     useEffect(() => {
     api.getCbDatas()
@@ -33,9 +35,34 @@ function StepTwo({ data, onPrev, onComplete, setisModalOpen }) {
 
     const handleComplete = (e) => {
         e.preventDefault();
+        SetSelectedDriver(localStorage.getItem('driver'));
+
+        // Add the data to backend     
+        const driverDetails = {
+            drivername: selectedDriver.name,
+            model: selectedCab.model,
+            colour: selectedCab.colour,
+            email: selectedDriver.email,
+        };
+          
+        api.createManagerData(driverDetails)
+        .then((res) => {
+            toast.success("Driver details added successfully!");
+            setData([...data, driverDetails])
+            })
+            .catch(error => {
+                console.log(error)
+                if(error.response.data.message) toast.error(error.response.data.message);
+                else toast.error("Something went wrong, Please try again later");
+        });
+
         localStorage.removeItem('cab');
         localStorage.removeItem('driver');
         onComplete({ ...data, selectedCab });
+
+        // TODO: update the data state in usertlist so that changes are reflected
+
+        setisModalOpen(false)
     };
 
     useEffect(() => {
