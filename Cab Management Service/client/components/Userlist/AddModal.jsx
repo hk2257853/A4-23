@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import * as api from "../../api"
 import { toast } from 'react-toastify';
 
-// exposing mongodb id can cause security issues? not an issue it seems https://www.reddit.com/r/mongodb/comments/hmav7b/is_it_safe_to_use_mongodbs_id_on_the_frontend/
-
 function AddModal(props) {
     let { setisModalOpen, heading, setData, data, selectedCab, setSelectedRowId } = props;
     const [cabDetails, setCabDetails,] = useState({ regno: "", model: "", colour: "" })

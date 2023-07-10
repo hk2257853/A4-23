@@ -1,11 +1,13 @@
 import { useState,useEffect } from 'react';
-import StepOne from '../components/StepByStepModel/StepOne';
-import StepTwo from '../components/StepByStepModel/StepTwo';
-import ProcessingPage from '../components/StepByStepModel/ProcessingPage';
+import StepOne from './StepOne';
+import StepTwo from './StepTwo';
+import ProcessingPage from './ProcessingPage';
 
 //TODD: Confirmation page, processing page and confirmed page
 
-function Model() {
+function Model(props) {
+    // let { setisModalOpen, heading, setData, data, selectedCab, setSelectedRowId } = props;
+    let { setisModalOpen, heading, selectedCab, setSelectedRowId } = props;
     const [step, setStep] = useState(1);
     const [data, setData] = useState({});
     const [processing, setProcessing] = useState(false);
@@ -35,16 +37,17 @@ function Model() {
     return (
         <div>
             {step === 1 && (
-                <StepOne onNext={handleStepOneNext} />
+                <StepOne onNext={handleStepOneNext} setisModalOpen={setisModalOpen} />
             )}
             {step === 2 && (
                 <StepTwo
+                    setisModalOpen = {setisModalOpen}
                     data={data}
                     onPrev={handleStepTwoPrev}
                     onComplete={handleStepTwoComplete}
                 />
             )}
-            {step == 3 && processing && (
+            {/* {step == 3 && processing && (
                 <ProcessingPage />
             )}
             {step == 4 && !processing && data.name && (
@@ -54,7 +57,7 @@ function Model() {
                     <p>Color: {data.color}</p>
                     <p>Model: {data.model}</p>
                 </div>
-            )}
+            )} */}            
         </div>
     );
 }

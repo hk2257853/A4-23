@@ -8,6 +8,7 @@ import * as api from '../../api'
 import UnauthorizedAccessPage from "./UnauthorizedAccess";
 import Pagination from "./Pagination";
 import Head from 'next/head'
+import Model from "../StepByStepModel/Model";
 
 // TODO: put features like dashboard, pagination and sort table option
 
@@ -191,7 +192,7 @@ function Table() {
             </div>
             {
               isModalOpen && (
-                <AddModal setisModalOpen={setisModalOpen} heading="Add" setData={setData} data={data} selectedCab={data.find((row) => row._id === selectedRowId)} setSelectedRowId={setSelectedRowId} />
+                <Model setisModalOpen={setisModalOpen} heading="Add" setData={setData} data={data} selectedCab={data.find((row) => row._id === selectedRowId)} setSelectedRowId={setSelectedRowId} />
               )
             }
           </section>
