@@ -10,7 +10,7 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
-const PORT = 1300;
+const PORT = 1001;
 
 app.use("/driver", driverRoutes);
 
@@ -27,6 +27,6 @@ mongoose
   });
 
 app.listen(PORT, () => {
-    console.log("Server started on 1300");
+    console.log(`Server started on ${PORT}`);
 });
   

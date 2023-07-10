@@ -1,19 +1,26 @@
 import React, { useState,useEffect } from 'react';
+import * as api from '../../api'
 
 function StepTwo({ data, onPrev, onComplete, setisModalOpen }) {
-    const [cabs, setCabs] = useState([
-        { registrationNo: 'ABC123', color: 'Red', model: 'Toyota Corolla' },
-        { registrationNo: 'DEF456', color: 'Blue', model: 'Honda Civic' },
-        { registrationNo: 'BCD890', color: 'Purple', model: 'Tesla Model S' },
-    ])
-    const [selectedCab, setSelectedCab] = useState({ "registrationNo": "", "model": "", "color": "" })
+    const [cabs, setCabs] = useState([])
+    const [selectedCab, setSelectedCab] = useState({ "regno": "", "model": "", "colour": "" })
+
+    useEffect(() => {
+    api.getCbDatas()
+      .then((res) => {
+        setCabs(res.data);
+      })
+      .catch(error => {
+        console.log(error)
+      });
+    })
 
     const handleChange = (e) => {
-        const selectedCab = cabs.find((cab) => cab.registrationNo === e.target.value);
+        const selectedCab = cabs.find((cab) => cab.regno === e.target.value);
         if (selectedCab) {
             setSelectedCab({
-                registrationNo: selectedCab.registrationNo,
-                color: selectedCab.color,
+                regno: selectedCab.regno,
+                colour: selectedCab.colour,
                 model: selectedCab.model,
             });
         }
@@ -80,14 +87,14 @@ function StepTwo({ data, onPrev, onComplete, setisModalOpen }) {
                     id="name"
                     name="name"
                     onChange={handleChange}
-                    value={selectedCab.registrationNo}
+                    value={selectedCab.regno}
                 >
-                    {selectedCab.registrationNo === '' && (
+                    {selectedCab.regno === '' && (
                     <option value="">Select an option</option>
                     )}
                     {cabs.map((cab, index) => (
-                    <option key={index} value={cab.registrationNo}>
-                        {cab.registrationNo}
+                    <option key={index} value={cab.regno}>
+                        {cab.regno}
                     </option>
                     ))}
                 </select>
@@ -95,16 +102,16 @@ function StepTwo({ data, onPrev, onComplete, setisModalOpen }) {
                 <div className="mb-6">
                 <label
                     className="block uppercase tracking-wide font-bold text-xs mb-2 ml-1"
-                    htmlFor="registrationNo"
+                    htmlFor="regno"
                 >
                     Registration Number
                 </label>
                 <input
                     className="block w-full border-b border-black focus:border-blue-700 focus:rounded py-2 px-4 mb-3 leading-tight focus:border focus:outline-none focus:bg-white focus:shadow"
-                    id="registrationNo"
-                    name="registrationNo"
+                    id="regno"
+                    name="regno"
                     readOnly
-                    value={selectedCab.registrationNo}
+                    value={selectedCab.regno}
                 />
                 </div>
                 <div className="mb-6">
@@ -126,17 +133,17 @@ function StepTwo({ data, onPrev, onComplete, setisModalOpen }) {
                 <div className="mb-6">
                 <label
                     className="block uppercase tracking-wide font-bold text-xs mb-2 ml-1"
-                    htmlFor="color"
+                    htmlFor="colour"
                 >
                     Color
                 </label>
                 <input
                     className="block w-full border-b border-black focus:border-blue-700 focus:rounded py-2 px-4 mb-3 leading-tight focus:border focus:outline-none focus:bg-white focus:shadow"
-                    id="color"
-                    name="color"
+                    id="colour"
+                    name="colour"
                     readOnly
                     onChange={handleChange}
-                    value={selectedCab.color}
+                    value={selectedCab.colour}
                 />
                 </div>
                 <div className="flex justify-end gap-x-2">
@@ -145,10 +152,10 @@ function StepTwo({ data, onPrev, onComplete, setisModalOpen }) {
                 </button>
                 <button
                     className={`bg-cyan-600 border text-white px-4 py-2 rounded uppercase tracking-widest font-bold hover:bg-white hover:text-cyan-600 hover:border-cyan-600 text-sm ${
-                    !selectedCab.registrationNo ? 'cursor-not-allowed' : ''
+                    !selectedCab.regno ? 'cursor-not-allowed' : ''
                     }`}
                     onClick={handleComplete}
-                    disabled={!selectedCab.registrationNo}
+                    disabled={!selectedCab.regno}
                 >
                     Submit
                 </button>

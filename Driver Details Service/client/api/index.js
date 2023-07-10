@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API = axios.create({ baseURL: "http://localhost:1300" }); // server url
+const API = axios.create({ baseURL: "http://localhost:1001" }); // server url
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem("profile")) {

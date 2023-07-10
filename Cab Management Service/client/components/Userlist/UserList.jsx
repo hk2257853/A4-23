@@ -14,6 +14,8 @@ import Model from "../StepByStepModel/Model";
 
 function Table() {
   const [data, setData] = useState([]);
+  const [cb, setCbData] = useState([]);
+  const [driver, setDriverData] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
@@ -42,8 +44,31 @@ function Table() {
     else {
       setIsLoggedIn(true)
     }
-  }, [isLoggedIn, count]);
+      
+  // get driver data
+  api.getDriverDatas()
+      .then((res) => {
+        setDriverData(res.data);
+      })
+      .catch(error => {
+        console.log(error)
+      });
 
+  // get cab data
+  api.getCbDatas()
+      .then((res) => {
+        setCbData(res.data);
+      })
+      .catch(error => {
+        console.log(error)
+      });
+
+  }, [isLoggedIn, count]); // TODO: any improvements can be done here?
+
+  useEffect(() => {
+    console.log(driver)
+    console.log(cb)
+  }, [driver], [cb])
 
   // For Delete Modal
   const handleButtonClick = (id) => {

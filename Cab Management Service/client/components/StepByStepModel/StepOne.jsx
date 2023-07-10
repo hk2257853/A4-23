@@ -1,17 +1,28 @@
 import { useState, useEffect } from 'react';
+import * as api from '../../api'
 
 function StepOne({ onNext, setisModalOpen }) {
-    const [driver, setDriver] = useState({ "name": "", "email": "", "phone": "" });
-    const [drivers, setDrivers] = useState([
-        { name: 'John Doe', email: 'johndoe@example.com', phone: '555-555-5555' },
-        { name: 'Jane Smith', email: 'janesmith@example.com', phone: '555-555-5555' },
-        { name: 'Bob Johnson', email: 'bobjohnson@example.com', phone: '555-555-5555' },
-    ]);
+    const [selectedDriver, selectedSelectedDriver] = useState({ "name": "", "email": "", "phone": "" });
+    const [driverData, setDriversData] = useState([]);
+
+    useEffect(() => {
+    api.getDriverDatas()
+        .then((res) => {
+            setDriversData(res.data);
+        })
+        .catch(error => {
+            console.log(error)
+        });
+    }, [])
+
+    useEffect(() => {
+        console.log(driverData)
+    }, [driverData])
 
     const handleChange = (e) => {
-        const selectedDriver = drivers.find((driver) => driver.name === e.target.value);
-        setDriver({
-            ...driver,
+        const selectedDriver = drivers.find((selectedDriver) => selectedDriver.name === e.target.value);
+        selectedSelectedDriver({
+            ...selectedDriver,
             name: e.target.value,
             email: selectedDriver.email,
             contact: selectedDriver.phone,
@@ -19,14 +30,14 @@ function StepOne({ onNext, setisModalOpen }) {
     };
 
     const handleNext = () => {
-        localStorage.setItem('driver', JSON.stringify(driver));
-        onNext(driver);
+        localStorage.setItem('selectedDriver', JSON.stringify(selectedDriver));
+        onNext(selectedDriver);
     };
 
     useEffect(() => {
-        const driver = localStorage.getItem('driver');
-        if (driver) {
-            setDriver(JSON.parse(driver));
+        const selectedDriver = localStorage.getItem('selectedDriver');
+        if (selectedDriver) {
+            selectedSelectedDriver(JSON.parse(selectedDriver));
         }
     }, []);
 
@@ -63,7 +74,7 @@ function StepOne({ onNext, setisModalOpen }) {
                 <div className="mb-6">
                 <label
                     className="block uppercase tracking-wide font-bold text-xs mb-2 ml-1"
-                    htmlFor="driver"
+                    htmlFor="selectedDriver"
                 >
                     Select Driver
                 </label>
@@ -71,13 +82,13 @@ function StepOne({ onNext, setisModalOpen }) {
                     className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
                     id="name"
                     name="name"
-                    value={driver.name}
+                    value={selectedDriver.name}
                     onChange={handleChange}
                 >
-                    {driver.name === '' && <option value="">Select an option</option>}
-                    {drivers.map((driver, index) => (
-                    <option key={index} value={driver.name}>
-                        {driver.name}
+                    {selectedDriver.name === '' && <option value="">Select an option</option>}
+                    {driverData.map((selectedDriver, index) => (
+                    <option key={index} value={selectedDriver.name}>
+                        {selectedDriver.name}
                     </option>
                     ))}
                 </select>
@@ -95,7 +106,7 @@ function StepOne({ onNext, setisModalOpen }) {
                     name="email"
                     readOnly
                     onChange={handleChange}
-                    value={driver.email}
+                    value={selectedDriver.email}
                 />
                 </div>
                 <div className="mb-6">
@@ -111,16 +122,16 @@ function StepOne({ onNext, setisModalOpen }) {
                     name="contact"
                     readOnly
                     onChange={handleChange}
-                    value={driver.contact}
+                    value={selectedDriver.contact}
                 />
                 </div>
                 <div className="flex justify-end">
                 <button
                     className={`bg-cyan-600 border text-white px-4 py-2 rounded uppercase tracking-widest font-bold hover:bg-white hover:text-cyan-600 hover:border-cyan-600 text-sm ${
-                    driver.name === '' ? 'cursor-not-allowed' : 'cursor-pointer'
+                    selectedDriver.name === '' ? 'cursor-not-allowed' : 'cursor-pointer'
                     }`}
                     onClick={handleNext}
-                    disabled={!driver.name}
+                    disabled={!selectedDriver.name}
                 >
                     Next
                 </button>

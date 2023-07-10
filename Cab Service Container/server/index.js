@@ -14,7 +14,7 @@ app.use(cors());
 const PORT = 1000;
 
 app.use("/user", userRoutes);
-app.use("/driver", proxy("http://localhost:1300/")) 
+app.use("/driver", proxy("http://localhost:1001/")) 
 // at http://localhost:1000/driver/driver can view that server's results!! TODO: better naming to remove confusion
 // extra note (learning purpose):  the headers intact, including the Authorization header with the token. The backend server at http://localhost:1300/ can then access the token in the same way as your initial server.
 
@@ -31,6 +31,6 @@ mongoose
   });
 
 app.listen(PORT, () => {
-    console.log("Gateway Server started on 1000");
+    console.log(`Gateway Server started on ${PORT}`);
   });
   
