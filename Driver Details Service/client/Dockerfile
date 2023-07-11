@@ -6,7 +6,7 @@ RUN npm install
 RUN npm run build
 # EXPOSE 3001
 # CMD ["npm","start"]
-RUN rn -rf node_modules
+RUN rm -rf node_modules
 RUN npm install --production
 
 FROM node:16-alpine
