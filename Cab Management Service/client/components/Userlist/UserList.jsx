@@ -152,15 +152,19 @@ function Table() {
                 <thead>
                   <tr>
                     <th className="py-2 text-center px-4" onClick={() => handleSort("regno")}>
-                      Name {sortKey === "regno" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
+                      Driverame {sortKey === "regno" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
                       {sortKey !== "regno" && "↑↓"}
                     </th>
                     <th className="py-2 text-center px-4" onClick={() => handleSort("model")}>
-                      Model {sortKey === "model" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
+                      Email {sortKey === "model" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
                       {sortKey !== "model" && "↑↓"}
                     </th>
                     <th className="py-2 text-center px-4" onClick={() => handleSort("colour")}>
-                      Colour {sortKey === "colour" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
+                      RegNo {sortKey === "colour" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
+                      {sortKey !== "colour" && "↑↓"}
+                    </th>
+                    <th className="py-2 text-center px-4" onClick={() => handleSort("colour")}>
+                      Model {sortKey === "colour" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
                       {sortKey !== "colour" && "↑↓"}
                     </th>
                     <th className="py-2 text-center px-4">Action</th>

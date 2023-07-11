@@ -14,7 +14,9 @@ app.use(cors());
 const PORT = 1000;
 
 app.use("/user", userRoutes);
-app.use("/driver", proxy("http://localhost:1001/")) 
+app.use("/driver", proxy("http://localhost:1001/"))
+app.use("/cab", proxy("http://localhost:1002/"))
+app.use("/manage", proxy("http://localhost:1003/")) 
 // at http://localhost:1000/driver/driver can view that server's results!! TODO: better naming to remove confusion
 // extra note (learning purpose):  the headers intact, including the Authorization header with the token. The backend server at http://localhost:1300/ can then access the token in the same way as your initial server.
 

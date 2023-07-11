@@ -2,9 +2,10 @@ function TableRow({ row, handleButtonClick, handleEdit }) {
   return (
     <tr key={row._id} className="divide-y">
       {/* <td className="py-2 text-center px-4">{row._id}</td> */}
+      <td className="py-2 text-center px-4">{row.drivername}</td>
+      <td className="py-2 text-center px-4">{row.email}</td>
       <td className="py-2 text-center px-4">{row.regno}</td>
       <td className="py-2 text-center px-4">{row.model}</td>
-      <td className="py-2 text-center px-4">{row.colour}</td>
       <td className="py-2 text-center px-4">
         <div className="flex items-center justify-center px-4 gap-x-2">
           <button
