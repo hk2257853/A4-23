@@ -2,10 +2,10 @@ import mongoose from "mongoose";
 
 // TODO: make these required
 const managerSchema = mongoose.Schema({
-    drivername: String,
-    model: String,
-    colour: String,
     email: String,
+    drivername: String,
+    regno: String,
+    model: String,
     creator: String,
 })
 
