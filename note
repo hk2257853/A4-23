@@ -1,2 +1,5 @@
 need a container in FE mainly for token part (can't share token with different domains)
 req backend gateway to avoid the cross origin error
+
+cypress tutorial:
+https://stackoverflow.com/questions/72897775/cypress-folder-not-generating-package-v10-3-0
