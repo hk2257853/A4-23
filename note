@@ -1,0 +1,2 @@
+need a container in FE mainly for token part (can't share token with different domains)
+req backend gateway to avoid the cross origin error

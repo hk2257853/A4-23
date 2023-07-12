@@ -25,4 +25,4 @@ export const updateManagerData = (id, updatedData) => API.patch(`/manager/${id}`
 
 export const getDriverDatas = () => DriverAPI.get("/driver");
 
-export const getCbDatas = () => CabAPI.get("/manager");
+export const getCbDatas = () => CabAPI.get("/cab");
