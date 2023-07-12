@@ -37,7 +37,7 @@ function SignIn() {
             <Head>
                 <title>Sign In</title>
             </Head>
-            <div className="min-h-screen flex">
+            <div className="min-h-screen flex bg-[#f7f7f7]">
                 <div className="items-center flex flex-col w-full md:w-1/2 mt-32">
                     <h3 className="font-extrabold text-3xl uppercase font-serif tracking-widest">Welcome back</h3>
                     <p className="font-serif tracking-wider mt-4">Welcome back! Please enter your details</p>
@@ -52,14 +52,14 @@ function SignIn() {
                                     <label className="block uppercase tracking-wide font-serif text-xs font-bold mb-2" htmlFor="email">
                                         Email
                                     </label>
-                                    <Field className="block w-72 md:w-96 border-b border-black focus:border-blue-700 focus:rounded py-2 px-4 mb-3 leading-tight focus:border focus:outline-none focus:bg-white focus:shadow" id="email" type="email" placeholder="johndoe@gmail.com" name='email' autoComplete="username"/>
+                                    <Field className="block w-72 md:w-96 border-b border-black focus:border-blue-700 focus:rounded py-2 px-4 mb-3 leading-tight focus:border focus:outline-none focus:bg-white focus:shadow bg-[#f7f7f7]" id="email" type="email" placeholder="johndoe@gmail.com" name='email' autoComplete="username"/>
                                     <ErrorMessage name="email" component="div" className="text-red-500 text-xs mt-1" />
                                 </div>
                                 <div className="w-full px-3 mb-2">
                                     <label className="block uppercase tracking-wide font-serif text-xs font-bold mb-2" htmlFor="email">
                                         Password
                                     </label>
-                                    <Field className="block w-72 md:w-96 border-b border-black focus:border-blue-700 focus:rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:shadow focus:border" id="password" type="password" name='password' autoComplete="current-password" />
+                                    <Field className="bg-[#f7f7f7] block w-72 md:w-96 border-b border-black focus:border-blue-700 focus:rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:shadow focus:border" id="password" type="password" name='password' autoComplete="current-password" />
                                     <ErrorMessage name="password" component="div" className="text-red-500 text-xs mt-1" />
                                 </div>                                
                                 <button className="w-full hover:bg-black hover:text-white p-3 rounded mt-8 uppercase border border-black tracking-widest font-serif" type="submit">Login</button>
@@ -71,7 +71,7 @@ function SignIn() {
                         <Link href="/auth/register" className="font-bold underline-offset-4 underline uppercase">Sign up for free</Link>
                     </div>
                 </div>
-                <div className="hidden md:w-1/2 md:block">
+                <div className="hidden md:w-1/2 md:flex md:justify-center md:items-center bg-[#f7f7f7]">
                     <Image src={loginBackground} className="w-full max-h-screen" alt="Background" priority />
                 </div>
             </div>
