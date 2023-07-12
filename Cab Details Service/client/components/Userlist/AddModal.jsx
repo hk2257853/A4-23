@@ -105,19 +105,19 @@ function AddModal(props) {
                                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="cab-regno">
                                                     Cab Name
                                                 </label>
-                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="cab-regno" type="text" placeholder="John Doe" onChange={handleChange} name="regno" value={cabDetails.regno} />
+                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="cab-regno" type="text" placeholder="Alto" onChange={handleChange} name="regno" value={cabDetails.regno} />
                                             </div>
                                             <div className="w-full px-3 mb-6">
                                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="model">
                                                     Model
                                                 </label>
-                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="model" type="model" placeholder="example@example.com" onChange={handleChange} name="model" value={cabDetails.model} />
+                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="model" type="model" placeholder="LXI" onChange={handleChange} name="model" value={cabDetails.model} />
                                             </div>
                                             <div className="w-full px-3">
                                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="colour-no">
                                                     Colour
                                                 </label>
-                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="colour-no" type="tel" placeholder="1234567890" onChange={handleChange} name='colour' value={cabDetails.colour} />
+                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="colour-no" type="tel" placeholder="Red" onChange={handleChange} name='colour' value={cabDetails.colour} />
                                             </div>
                                         </div>
                                     </form>

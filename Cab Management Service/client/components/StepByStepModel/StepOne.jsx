@@ -15,18 +15,15 @@ function StepOne({ onNext, setisModalOpen }) {
         });
     }, [])
 
-    useEffect(() => {
-        console.log(driverData)
-    }, [driverData])
-
     const handleChange = (e) => {
-        const selectedDriver = drivers.find((selectedDriver) => selectedDriver.name === e.target.value);
+        const selectedDriver = driverData.find((selectedDriver) => selectedDriver.name === e.target.value);
         SetSelectedDriver({
             ...selectedDriver,
             name: e.target.value,
             email: selectedDriver.email,
-            contact: selectedDriver.phone,
+            contact: selectedDriver.contact,
         });
+        console.log(selectedDriver)
     };
 
     const handleNext = () => {
