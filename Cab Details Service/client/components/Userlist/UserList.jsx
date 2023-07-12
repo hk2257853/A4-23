@@ -152,7 +152,7 @@ function Table() {
                 <thead>
                   <tr>
                     <th className="py-2 text-center px-4" onClick={() => handleSort("regno")}>
-                      Name {sortKey === "regno" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
+                      Registration Number {sortKey === "regno" && (sortOrder === "asc" ? "↑" : (sortOrder === "desc" ? "↓" : "↑↓"))}
                       {sortKey !== "regno" && "↑↓"}
                     </th>
                     <th className="py-2 text-center px-4" onClick={() => handleSort("model")}>

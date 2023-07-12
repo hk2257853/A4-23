@@ -103,9 +103,9 @@ function AddModal(props) {
                                         <div className="flex flex-wrap -mx-3 mb-4">
                                             <div className="w-full px-3 mb-6">
                                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="cab-regno">
-                                                    Cab Name
+                                                    Cab Registration Number
                                                 </label>
-                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="cab-regno" type="text" placeholder="Alto" onChange={handleChange} name="regno" value={cabDetails.regno} />
+                                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-2 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="cab-regno" type="text" placeholder="UP 19 D 0343" onChange={handleChange} name="regno" value={cabDetails.regno} />
                                             </div>
                                             <div className="w-full px-3 mb-6">
                                                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="model">
