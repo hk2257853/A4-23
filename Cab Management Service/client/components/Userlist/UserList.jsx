@@ -9,8 +9,6 @@ import Pagination from "./Pagination";
 import Head from 'next/head'
 import Model from "../StepByStepModel/Model";
 
-// TODO: put features like dashboard, pagination and sort table option
-
 function Table() {
   const [data, setData] = useState([]);
   const [selectedRowId, setSelectedRowId] = useState(null);
@@ -195,7 +193,7 @@ function Table() {
             </div>
             {
               isModalOpen && (
-                <Model setisModalOpen={setisModalOpen} heading="Add" setData={setData} data={data} selectedRow={data.find((row) => row._id === selectedRowId)} setSelectedRowId={setSelectedRowId} />
+                <Model setisModalOpen={setisModalOpen} setManagerData={setData} managerData = {data} />
               )
             }
           </section>

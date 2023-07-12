@@ -12,11 +12,9 @@ function Navbar({ handleSidebarToggle }) {
     };
 
     const [user, setUser] = useState(null);
-    const [pageTitle, setPageTitle] = useState(''); // TODO: display title beside the logo
     const router = useRouter();
 
     useEffect(() => {
-        setPageTitle(document.title);
         const token = user?.response.token;
 
         const storedProfile = window.localStorage.getItem("profile");
@@ -60,7 +58,7 @@ function Navbar({ handleSidebarToggle }) {
                         </button>
                         <Link href="/" className="text-xl font-bold flex items-center lg:ml-2.5">
                             <img src="https://demo.themesberg.com/windster/images/logo.svg" className="h-6 mr-2" alt="Windster Logo" />
-                            <span className="self-center whitespace-nowrap">{pageTitle}</span>
+                            <span className="self-center whitespace-nowrap">RideEasy</span>
                         </Link>
                     </div>
                     <div className="flex items-center">

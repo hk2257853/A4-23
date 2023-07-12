@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Microfrontends Demo</title>
+        <title>Home</title>
         <meta name="description" content="Demo for Microfrontends using Module Federation" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

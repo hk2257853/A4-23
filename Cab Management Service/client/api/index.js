@@ -21,7 +21,6 @@ const API = createAxiosInstance("http://localhost:1000/manage");
 export const getManagerDatas = () => API.get("/manager");
 export const createManagerData = (newManagerData) => API.post("/manager", newManagerData);
 export const deleteManagerData = (id) => API.delete(`/manager/${id}`);
-export const updateManagerData = (id, updatedData) => API.patch(`/manager/${id}`, updatedData);
 
 export const getDriverDatas = () => DriverAPI.get("/driver");
 

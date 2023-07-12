@@ -2,11 +2,8 @@ import { useState, useEffect } from 'react';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 
-//TODD: Confirmation page, processing page and confirmed page
-
 function Model(props) {
-    // let { setisModalOpen, heading, setData, data, selectedCab, setSelectedRowId } = props;
-    let { setisModalOpen, heading, selectedCab, setSelectedRowId } = props;
+    let { setisModalOpen, setManagerData, managerData } = props;
     const [step, setStep] = useState(1);
     const [data, setData] = useState({});
 
@@ -19,8 +16,8 @@ function Model(props) {
         setStep(1);
     };
 
-    const handleStepTwoComplete = (managerData) => {
-        console.log(managerData)
+    const handleStepTwoComplete = (newManagerData) => {
+        setManagerData([...managerData, newManagerData])
     };
 
 

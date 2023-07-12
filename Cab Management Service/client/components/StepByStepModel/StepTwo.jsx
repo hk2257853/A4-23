@@ -55,20 +55,14 @@ function StepTwo({ data, onPrev, onComplete, setisModalOpen }) {
         api.createManagerData(managerData)
             .then((res) => {
                 toast.success("Driver details added successfully!");
-                // setData([...data, managerData]) // TODO: fix this
+                onComplete(res.data)
             })
             .catch(error => {
                 console.log(error)
-                // if (error.response.data.message) toast.error(error.response.data.message);
-                // else toast.error("Something went wrong, Please try again later");
             });
 
         localStorage.removeItem('cab');
         localStorage.removeItem('selectedDriver');
-        // onComplete({ ...data, selectedCab });
-        onComplete(managerData)
-
-        // TODO: update the data state in usertlist so that changes are reflected
 
         setisModalOpen(false)
     };

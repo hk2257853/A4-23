@@ -16,10 +16,7 @@ export const getManagerDatas = async (req, res) => {
 export const createManagerData = async (req, res) => {
     const post = req.body;
 
-    // const {email} = post;
-    // const existingManager = await ManagerData.findOne({ email });  
-    // if (existingManager)
-    // return res.status(400).json({ message: "Email already exist" });
+    // TODO: add the edge cases
   
     const newManagerData = new ManagerData({
       ...post,
@@ -28,7 +25,7 @@ export const createManagerData = async (req, res) => {
   
     try {
       await newManagerData.save();
-      res.status(200).json({ message: "Data added successfully!" });
+      res.status(200).json(newManagerData);
     } catch (error) {
       res.status(409).json({ message: error.message });
     }
@@ -46,18 +43,6 @@ export const deleteManagerData = async (req, res) => {
     return res.status(404).send("No manager data with the given id");
 
     res.json({ message: "Manager data deleted successfully." });
-};
-  
-export const updateManagerData = async (req, res) => {
-  const { id } = req.params;
-  const { name, email, contact } = req.body;
-
-  if (!mongoose.Types.ObjectId.isValid(id))
-    return res.status(404).send(`No post with id: ${id}`);
-
-  const updatedPost = { name, email, contact, _id: id };
-  await ManagerData.findByIdAndUpdate(id, updatedPost, { new: true });
-  res.json(updatedPost);
 };
   
 export default router;
