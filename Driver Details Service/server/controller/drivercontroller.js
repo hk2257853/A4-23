@@ -28,7 +28,7 @@ export const createDriverData = async (req, res) => {
   
     try {
       await newDriverData.save();
-      res.status(200).json({ message: "Driver data created successfully!" });
+      res.status(200).json({ message: "Driver data created successfully!", newData: newDriverData });
     } catch (error) {
       res.status(409).json({ message: error.message });
     }

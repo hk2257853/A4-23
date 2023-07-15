@@ -27,7 +27,9 @@ function AddModal(props) {
         api.createDriverData(driverDetails)
         .then((res) => {
             toast.success("Driver details added successfully!");
-            setData([...data, driverDetails])
+            const newDriverDetails = res.data.newData;
+            console.log(newDriverDetails)
+            setData([...data, newDriverDetails])
             })
             .catch(error => {
                 console.log(error)
